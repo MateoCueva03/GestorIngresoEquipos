@@ -3,23 +3,37 @@
 <head>
     <meta charset="UTF-8">
     <title>Consultas de Productos</title>
+    <link rel="stylesheet" th:href="@{/css/estilos.css}" />
     <style>
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Segoe UI', sans-serif;
+            background-color: #f4f6f9;
             margin: 30px;
-            background-color: #f4f6f8;
         }
 
-        h1, h2 {
+        h1 {
+            text-align: center;
             color: #333;
+            margin-bottom: 30px;
+        }
+
+        .seccion {
+            background: #fff;
+            padding: 20px;
+            margin-bottom: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+        }
+
+        h2 {
+            color: #444;
+            margin-bottom: 15px;
         }
 
         table {
             width: 100%;
             border-collapse: collapse;
-            margin-bottom: 30px;
-            background-color: #fff;
-            box-shadow: 0 0 5px rgba(0,0,0,0.1);
+            margin-top: 10px;
         }
 
         th, td {
@@ -29,67 +43,64 @@
         }
 
         th {
-            background-color: #007BFF;
+            background-color: #007bff;
             color: white;
         }
 
         form {
-            margin-bottom: 30px;
-            padding: 15px;
-            background-color: #e9ecef;
+            margin-bottom: 20px;
+        }
+
+        input {
+            padding: 7px;
+            width: 40%;
             border-radius: 5px;
-        }
-
-        form input[type="text"],
-        form input[type="number"] {
-            padding: 6px;
-            margin-right: 10px;
-            border-radius: 4px;
             border: 1px solid #ccc;
+            margin-right: 10px;
         }
 
-        form button {
-            padding: 6px 12px;
-            background-color: #007BFF;
+        button {
+            padding: 8px 14px;
+            background-color: #007bff;
             color: white;
             border: none;
-            border-radius: 4px;
+            border-radius: 5px;
             cursor: pointer;
         }
 
-        form button:hover {
+        button:hover {
             background-color: #0056b3;
         }
 
         .btn {
-            display: inline-block;
-            padding: 10px 15px;
-            margin-top: 20px;
-            margin-right: 10px;
-            color: white;
-            text-decoration: none;
+            padding: 8px 15px;
             border-radius: 5px;
+            text-decoration: none;
             font-weight: bold;
         }
 
         .btn-back {
-            background-color: #28a745;
+            background-color: #007bff;
+            color: white;
+            margin-right: 10px;
         }
 
         .btn-clear {
-            background-color: #dc3545;
+            background-color: #e83e8c;
+            color: white;
         }
 
         .btn-back:hover {
-            background-color: #218838;
+            background-color: #0056b3;
         }
 
         .btn-clear:hover {
-            background-color: #c82333;
+            background-color: #c82361;
         }
 
-        .seccion {
-            margin-bottom: 40px;
+        .acciones {
+            text-align: center;
+            margin-top: 20px;
         }
     </style>
 </head>
@@ -130,7 +141,7 @@
 
     <h2>Buscar por categoría</h2>
     <form th:action="@{/productos/consultas/categoria}" method="get">
-        <input type="text" name="categoria" placeholder="Ej. Electrónica" required>
+        <input type="text" name="categoria" placeholder="Ej. Gaming" required>
         <button type="submit">Buscar</button>
     </form>
 
@@ -164,8 +175,10 @@
     </table>
 </div>
 
-<a href="/productos" class="btn btn-back">← Volver al listado general</a>
-<a href="/productos/consultas" class="btn btn-clear">🧹 Limpiar consulta</a>
+<div class="acciones">
+    <a th:href="@{/productos}" class="btn btn-back">← Volver al listado general</a>
+    <a th:href="@{/productos/consultas}" class="btn btn-clear">🧹 Limpiar consulta</a>
+</div>
 
 </body>
 </html>

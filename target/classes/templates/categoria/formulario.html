@@ -1,14 +1,82 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
+    <meta charset="UTF-8">
     <title>Nueva Categoría</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 40px;
+            background-color: #f0f2f5;
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        form {
+            background-color: #fff;
+            padding: 25px;
+            width: 300px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+
+        label {
+            display: block;
+            margin-top: 10px;
+            font-weight: bold;
+        }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 8px;
+            margin-top: 5px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        button {
+            margin-top: 20px;
+            background-color: #28a745;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #218838;
+        }
+
+        .btn-back {
+            margin-top: 10px;
+            display: inline-block;
+            background-color: #007bff;
+            color: white;
+            padding: 8px 12px;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+
+        .btn-back:hover {
+            background-color: #0056b3;
+        }
+    </style>
 </head>
 <body>
+
 <h1>Formulario Categoría</h1>
+
 <form th:action="@{/categorias/guardar}" th:object="${categoria}" method="post">
     <label>Nombre:</label>
-    <input type="text" th:field="*{nombre}" required/><br>
+    <input type="text" th:field="*{nombre}" required/>
+
     <button type="submit">Guardar</button>
 </form>
+
+<a th:href="@{/categorias}" class="btn-back">← Volver a la lista</a>
+
 </body>
 </html>

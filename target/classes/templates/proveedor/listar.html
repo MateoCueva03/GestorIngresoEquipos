@@ -1,22 +1,82 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
+    <meta charset="UTF-8">
     <title>Lista de Proveedores</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 30px;
+            background-color: #f4f6f8;
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        .btn-container {
+            margin-bottom: 20px;
+        }
+
+        .button {
+            padding: 10px 15px;
+            text-decoration: none;
+            background-color: #007bff;
+            color: white;
+            border-radius: 5px;
+            margin-right: 10px;
+        }
+
+        .button:hover {
+            background-color: #0056b3;
+        }
+
+        .button-secondary {
+            background-color: #6c757d;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background-color: white;
+        }
+
+        th, td {
+            border: 1px solid #ccc;
+            padding: 12px;
+            text-align: center;
+        }
+
+        th {
+            background-color: #343a40;
+            color: white;
+        }
+    </style>
 </head>
 <body>
+
 <h1>Lista de Proveedores</h1>
-<a th:href="@{/proveedores/nuevo}">Nuevo Proveedor</a>
-<table border="1">
-    <tr>
-        <th>ID</th>
-        <th>Nombre</th>
-        <th>Contacto</th>
-    </tr>
-    <tr th:each="prov : ${proveedores}">
-        <td th:text="${prov.id}"></td>
-        <td th:text="${prov.nombre}"></td>
-        <td th:text="${prov.contacto}"></td>
-    </tr>
+
+<div class="btn-container">
+    <a th:href="@{/proveedores/nuevo}" class="button">➕ Nuevo Proveedor</a>
+    <a th:href="@{/}" class="button button-secondary">🏠 Menú Principal</a>
+</div>
+
+<table>
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Nombre</th>
+            <th>Contacto</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr th:each="prov : ${proveedores}">
+            <td th:text="${prov.id}"></td>
+            <td th:text="${prov.nombre}"></td>
+            <td th:text="${prov.contacto}"></td>
+        </tr>
+    </tbody>
 </table>
+
 </body>
-</html>

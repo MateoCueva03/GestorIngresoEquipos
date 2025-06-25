@@ -1,20 +1,82 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
+    <meta charset="UTF-8">
     <title>Lista de Categorías</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 30px;
+            background-color: #f0f2f5;
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        table {
+            width: 50%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            background-color: #fff;
+        }
+
+        th, td {
+            border: 1px solid #ccc;
+            padding: 10px;
+            text-align: center;
+        }
+
+        th {
+            background-color: #007bff;
+            color: white;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 8px 12px;
+            background-color: #28a745;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            margin-bottom: 15px;
+        }
+
+        .btn:hover {
+            background-color: #218838;
+        }
+
+        .btn-index {
+            background-color: #17a2b8;
+            margin-left: 10px;
+        }
+
+        .btn-index:hover {
+            background-color: #138496;
+        }
+    </style>
 </head>
 <body>
+
 <h1>Lista de Categorías</h1>
-<a th:href="@{/categorias/nuevo}">Nueva Categoría</a>
-<table border="1">
-    <tr>
-        <th>ID</th>
-        <th>Nombre</th>
-    </tr>
-    <tr th:each="cat : ${categorias}">
-        <td th:text="${cat.id}"></td>
-        <td th:text="${cat.nombre}"></td>
-    </tr>
+
+<a th:href="@{/categorias/nuevo}" class="btn">➕ Nueva Categoría</a>
+<a th:href="@{/}" class="btn btn-index">🏠 Menú Principal</a>
+
+<table>
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Nombre</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr th:each="cat : ${categorias}">
+            <td th:text="${cat.id}"></td>
+            <td th:text="${cat.nombre}"></td>
+        </tr>
+    </tbody>
 </table>
+
 </body>
 </html>
