@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Nuevo Proveedor</title>
+</head>
+<body>
+<h1>Formulario Proveedor</h1>
+<form th:action="@{/proveedores/guardar}" th:object="${proveedor}" method="post">
+    <label>Nombre:</label>
+    <input type="text" th:field="*{nombre}" required/><br>
+    <label>Contacto:</label>
+    <input type="text" th:field="*{contacto}" required/><br>
+    <button type="submit">Guardar</button>
+</form>
+</body>
+</html>

@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Gestión de Productos</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 30px;
+            background-color: #f8f9fa;
+        }
+
+        h1, h2 {
+            color: #333;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+            background-color: #fff;
+        }
+
+        th, td {
+            border: 1px solid #ccc;
+            padding: 10px;
+            text-align: center;
+        }
+
+        th {
+            background-color: #007BFF;
+            color: white;
+        }
+
+        a.button {
+            background-color: #28a745;
+            color: white;
+            padding: 8px 12px;
+            text-decoration: none;
+            border-radius: 5px;
+            margin-right: 10px;
+        }
+
+        a.button:hover {
+            background-color: #218838;
+        }
+
+        .button-secondary {
+            background-color: #17a2b8;
+        }
+
+        .button-index {
+            background-color: #6c757d;
+        }
+
+        .button-index:hover {
+            background-color: #5a6268;
+        }
+
+        .btn-container {
+            margin: 20px 0;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Gestión de Productos</h1>
+
+    <div class="btn-container">
+        <a href="/productos/nuevo" class="button">➕ Nuevo Producto</a>
+        <a href="/productos/consultas" class="button button-secondary">🔍 Ir a Consultas</a>
+		<a th:href="@{/}" class="button button-index">🏠 Menú Principal</a>
+    </div>
+
+    <h2>Listado actual</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nombre</th>
+                <th>Precio</th>
+                <th>Stock</th>
+                <th>Categoría</th>
+                <th>Proveedor</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="prod : ${productos}">
+                <td th:text="${prod.id}">1</td>
+                <td th:text="${prod.nombre}">nombre</td>
+                <td th:text="${prod.precio}">precio</td>
+                <td th:text="${prod.stock}">stock</td>
+                <td th:text="${prod.categoria.nombre}">categoría</td>
+                <td th:text="${prod.proveedor.nombre}">proveedor</td>
+            </tr>
+        </tbody>
+    </table>
+
+</body>
+</html>

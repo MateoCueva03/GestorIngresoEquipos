@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Lista de Proveedores</title>
+</head>
+<body>
+<h1>Lista de Proveedores</h1>
+<a th:href="@{/proveedores/nuevo}">Nuevo Proveedor</a>
+<table border="1">
+    <tr>
+        <th>ID</th>
+        <th>Nombre</th>
+        <th>Contacto</th>
+    </tr>
+    <tr th:each="prov : ${proveedores}">
+        <td th:text="${prov.id}"></td>
+        <td th:text="${prov.nombre}"></td>
+        <td th:text="${prov.contacto}"></td>
+    </tr>
+</table>
+</body>
+</html>

@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Consultas de Productos</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 30px;
+            background-color: #f4f6f8;
+        }
+
+        h1, h2 {
+            color: #333;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 30px;
+            background-color: #fff;
+            box-shadow: 0 0 5px rgba(0,0,0,0.1);
+        }
+
+        th, td {
+            border: 1px solid #ccc;
+            padding: 10px;
+            text-align: center;
+        }
+
+        th {
+            background-color: #007BFF;
+            color: white;
+        }
+
+        form {
+            margin-bottom: 30px;
+            padding: 15px;
+            background-color: #e9ecef;
+            border-radius: 5px;
+        }
+
+        form input[type="text"],
+        form input[type="number"] {
+            padding: 6px;
+            margin-right: 10px;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+        }
+
+        form button {
+            padding: 6px 12px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        form button:hover {
+            background-color: #0056b3;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 10px 15px;
+            margin-top: 20px;
+            margin-right: 10px;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+        }
+
+        .btn-back {
+            background-color: #28a745;
+        }
+
+        .btn-clear {
+            background-color: #dc3545;
+        }
+
+        .btn-back:hover {
+            background-color: #218838;
+        }
+
+        .btn-clear:hover {
+            background-color: #c82333;
+        }
+
+        .seccion {
+            margin-bottom: 40px;
+        }
+    </style>
+</head>
+<body>
+
+<h1>Consultas de Productos</h1>
+
+<div class="seccion">
+    <h2>Productos con stock mayor a 10</h2>
+    <table>
+        <tr><th>Nombre</th><th>Precio</th><th>Stock</th></tr>
+        <tr th:each="p : ${stockMayorA10}">
+            <td th:text="${p.nombre}"></td>
+            <td th:text="${p.precio}"></td>
+            <td th:text="${p.stock}"></td>
+        </tr>
+    </table>
+</div>
+
+<div class="seccion">
+    <h2>Productos ordenados por precio</h2>
+    <table>
+        <tr><th>Nombre</th><th>Precio</th><th>Stock</th></tr>
+        <tr th:each="p : ${ordenadosPrecio}">
+            <td th:text="${p.nombre}"></td>
+            <td th:text="${p.precio}"></td>
+            <td th:text="${p.stock}"></td>
+        </tr>
+    </table>
+</div>
+
+<div class="seccion">
+    <h2>Buscar por nombre</h2>
+    <form th:action="@{/productos/consultas/nombre}" method="get">
+        <input type="text" name="nombre" placeholder="Ej. Laptop" required>
+        <button type="submit">Buscar</button>
+    </form>
+
+    <h2>Buscar por categoría</h2>
+    <form th:action="@{/productos/consultas/categoria}" method="get">
+        <input type="text" name="categoria" placeholder="Ej. Electrónica" required>
+        <button type="submit">Buscar</button>
+    </form>
+
+    <h2>Buscar por proveedor</h2>
+    <form th:action="@{/productos/consultas/proveedor}" method="get">
+        <input type="text" name="proveedor" placeholder="Ej. Lenovo" required>
+        <button type="submit">Buscar</button>
+    </form>
+
+    <h2>Buscar por rango de precio</h2>
+    <form th:action="@{/productos/consultas/rango}" method="get">
+        <input type="number" name="min" step="0.01" placeholder="Precio mínimo" required>
+        <input type="number" name="max" step="0.01" placeholder="Precio máximo" required>
+        <button type="submit">Buscar</button>
+    </form>
+</div>
+
+<div class="seccion" th:if="${resultado != null}">
+    <h2 th:text="${titulo}"></h2>
+    <table>
+        <tr>
+            <th>Nombre</th><th>Precio</th><th>Stock</th><th>Categoría</th><th>Proveedor</th>
+        </tr>
+        <tr th:each="p : ${resultado}">
+            <td th:text="${p.nombre}">Nombre</td>
+            <td th:text="${p.precio}">Precio</td>
+            <td th:text="${p.stock}">Stock</td>
+            <td th:text="${p.categoria.nombre}">Categoría</td>
+            <td th:text="${p.proveedor.nombre}">Proveedor</td>
+        </tr>
+    </table>
+</div>
+
+<a href="/productos" class="btn btn-back">← Volver al listado general</a>
+<a href="/productos/consultas" class="btn btn-clear">🧹 Limpiar consulta</a>
+
+</body>
+</html>

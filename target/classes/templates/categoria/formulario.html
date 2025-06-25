@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Nueva Categoría</title>
+</head>
+<body>
+<h1>Formulario Categoría</h1>
+<form th:action="@{/categorias/guardar}" th:object="${categoria}" method="post">
+    <label>Nombre:</label>
+    <input type="text" th:field="*{nombre}" required/><br>
+    <button type="submit">Guardar</button>
+</form>
+</body>
+</html>
